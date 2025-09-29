@@ -2,34 +2,32 @@
 
 Відкрити AWS CloudWatch → Metrics → EC2 → InstanceId.
 
-Зробити скрин, де видно:
+- CPUUtilization (завантаження CPU)
+- MemoryUtilization (завантаження пам’яті, якщо активовано CloudWatch Agent).
 
-CPUUtilization (завантаження CPU)
-MemoryUtilization (завантаження пам’яті, якщо активовано CloudWatch Agent).
+![cwa](images/graph1.png)
 
+> Саме за вказаним шляхом `AWS CloudWatch → Metrics → EC2 → InstanceId` метрики відстуні, просте вони пристуні за `AWS CloudWatch → Metrics → CWAgent` 
 
 2. Налаштування CloudWatch Alarms для CPU та пам’яті
 
 Відкрити AWS CloudWatch → Alarms.
 
-Зробити скрин з налаштованими алармами:
+- CPU > 80% протягом 5 хвилин
+- Memory > 75% протягом 5 хвилин
 
-CPU > 80% протягом 5 хвилин,
-Memory > 75% протягом 5 хвилин.
+![alarms](images/alram-normal.png)
 
+> Память я пізніше зменшив до 50% бо `streess` падає якщо задаєш більше ніж є free
 
 3. Налаштування SNS-сповіщень
 
 Відкрити Amazon SNS → Topics → Ваш топік.
 
-Зробити скрин, де видно:
-
-Створений SNS-топік
-Вказано вашу email-адресу
-Підтвердження підписки (Subscription confirmed)
-
-
-
+- Створений SNS-топік
+- Вказано вашу email-адресу
+- Підтвердження підписки (Subscription confirmed)
+![sns](images/sns.png)
 
 4. Перевірка спрацювання аларму (створення навантаження)
 
@@ -37,35 +35,37 @@ Memory > 75% протягом 5 хвилин.
 
 Виконати команду для створення навантаження:
 
-stress --cpu 2 --timeout 300
+`stress --cpu 2 --timeout 300`
 
- або
+![ssh](images/stress.png)
+CloudWatch → Alarms, Alarm in ALARM state.
 
-yes > /dev/null &
-
-Зробити скрин CloudWatch → Alarms, де видно Alarm in ALARM state.
+![alarm-red](images/alarm-red.png)
 
 
 
 5. Отримане email-сповіщення про перевищення порогу
 
-Зробити скрин повідомлення в електронній пошті, яке надійшло після спрацювання аларму.
 
+![email-cpu-first](images/alarm-cpu1.png)
+![email-cpu-second](images/alarm-cpu2.png) 
+![email-ram](images/alarm-ram.png)
 
+> P.S. довго грався з RAM > 75%
 
 6. Графік навантаження
 
 Відкрити CloudWatch → Metrics → EC2 → CPUUtilization.
 
-Зробити скрин, де видно зріст навантаження під час тесту.
 
+![graph](images/graph2.png)
 
 
 7. Видалення ресурсів (якщо потрібно)
 
 Відкрити AWS CloudWatch → Alarms → Delete.
 
+![alarm-deleted](images/alarm-del.png)
+
 Відкрити AWS CloudWatch → SNS → Delete topic.
-
-Зробити скрин, що аларми та SNS-топік видалені.
-
+![sns-deleted](images/sns-del.png)
