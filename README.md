@@ -7,7 +7,7 @@
 
 ![cwa](images/graph1.png)
 
-> Саме за вказаним шляхом `AWS CloudWatch → Metrics → EC2 → InstanceId` метрики відстуні, просте вони пристуні за `AWS CloudWatch → Metrics → CWAgent` 
+> Саме за вказаним шляхом `AWS CloudWatch → Metrics → EC2 → InstanceId` метрики з агенту для RAM відстуні, проте вони пристуні за `AWS CloudWatch → Metrics → CWAgent` 
 
 2. Налаштування CloudWatch Alarms для CPU та пам’яті
 
